@@ -1,0 +1,12 @@
+---
+### Install and Configure tomcat application server on centos
+
+- hosts: masterhost
+  become: true
+  tasks:
+  
+    - name:install and configure java
+      yum:
+       name: java-11-openjdk-devel
+       state: latest
+       

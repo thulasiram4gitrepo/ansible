@@ -1,0 +1,9 @@
+---
+web-pkg: "nginx"
+
+web_daemon: "nginx"
+
+doc_root: "/var/www/html"
+
+websites_src_dir: "index.html"
+

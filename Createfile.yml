@@ -1,0 +1,10 @@
+---
+
+- hosts: masterhost
+  become: true
+  tasks:
+  
+    - name: create file
+      shell:
+       cmd: touch testfile1 testfile2
+       cmd: hostname

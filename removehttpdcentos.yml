@@ -1,0 +1,32 @@
+--- ### un-install or remove httpd on Centos7
+- hosts: masterhost
+  become: true
+  tasks: 
+    # - name: stop the httpd service
+      # service:
+       # name: httpd
+       # state: stopped
+       
+##################The service command supports only basic LSB actions (start, stop, restart, try-restart, reload, force-reload, status). For other actions, please try to use systemctl ###############
+       
+    - name: stop the httpd service
+      systemd:
+       name: httpd
+       state: stopped
+       
+    - name: un-install or remove httpd on Centos7
+      yum:
+       name: httpd
+       state: absent
+    
+    - name: remove document root
+      file:
+       path: /var/www
+       state: absent
+    - name: remove configuration file
+      file:
+       path: etc/httpd
+       state: absent
+       
+       
+       

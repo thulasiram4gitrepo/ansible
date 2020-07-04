@@ -1,0 +1,10 @@
+---
+- handlers:
+   - name: start_service
+     service: nginx
+     state: started
+     become: true
+   - name: restart_service
+     service: nginx
+     state: restarted
+     

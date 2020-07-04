@@ -1,0 +1,52 @@
+---
+- become: true
+  hosts: all
+  name: install apache server on ubuntu machine
+  tasks:
+    - name: install apache2
+      apt:
+       name: apache2
+       state: latest
+       update_cache: yes
+      tags:
+       - install_all
+       - install_apache
+      notify:
+       - start_service       
+
+    - name: copy the webpages in document root
+      copy:
+       src: "index.html"
+       dest: "/var/www/html"
+      tags:
+       - install_all
+       - copy_webpages
+      notify:   # if we modified the webpages then only notify the service
+       - restart_service
+       
+#################### handlers and tags ############################       
+       
+  handlers:
+    - name: start_service
+      service:
+       name: apache2
+       state: started
+      tags:
+       - install_all
+       - start_service
+    - name: restart_service
+      service:
+       name: apache2
+       state: restarted
+      tags:
+       - install_all
+       - start_service
+# test commands
+# ansible-playbook -i hosts.ini handlers.yml --check
+# ansible-playbook -i hosts.ini handlers.yml -t install_apache
+# ansible-playbook -i hosts.ini handlers.yml -t copy_webpages
+# vi index.html
+# ansible-playbook -i hosts.ini handlers.yml -t copy_webpages
+     
+       
+     

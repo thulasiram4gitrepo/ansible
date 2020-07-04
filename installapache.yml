@@ -1,0 +1,29 @@
+---
+- become: true
+  hosts: all
+  name: install apache server on ubuntu machine
+  tasks:
+    - name: install apache2
+      apt:
+       name: apache2
+       state: latest
+       update_cache: yes
+
+    - name: servie apche2 service
+      service:
+       name: apache2
+       enabled: yes
+       state: started
+
+    - name: copy the webpages in document root
+      copy:
+       src: "index.html"
+       dest: "/var/www/html"
+
+    - name: restart the apache service after copying the webpages
+      service:
+       name: apache2
+       state: restarted
+       
+       
+       

@@ -1,0 +1,13 @@
+---
+- name: install the {{web_pkg}} server
+  apt:
+   name: {{web_pkg}}
+   state: present
+   update_cache: yes
+  notify:
+   - start-webservice
+   
+- name: copy the webpages
+  src: {{doc_root}}
+  dest: {{websites_src_dir}}
+   

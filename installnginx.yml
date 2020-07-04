@@ -1,0 +1,16 @@
+---
+- become: true
+  hosts: host
+  tasks:
+    - name: install nginx
+      apt:
+       name: nginx
+       state: latest
+       update_cache: yes # Ansible's apt module to refresh the caches before applying whatever change is necessary
+       
+    - name: start service
+      service:
+       name: nginx
+       state: started
+    
+       

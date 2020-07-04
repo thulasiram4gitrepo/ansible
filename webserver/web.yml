@@ -1,0 +1,7 @@
+---  # Master playbook to install Nginx web server
+- hosts: host
+  become: true
+  roles:
+   - webserver
+ 
+  

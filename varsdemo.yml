@@ -1,0 +1,18 @@
+--- ### vars demo which vars will call first checking.
+
+- hosts: masterhost
+  become: true
+  vars:
+   new_msg: "Thulasi"
+  tasks:  
+    - name: hello msg
+      debug:
+       msg: "hello {{new_msg}}" ## if we dint declare here by default it will take from main vars
+      #vars: 
+       #new_msg: "lavanya"
+       
+    - name: hello new msg
+      debug:
+       msg: "hello {{new_msg}}"
+     
+      

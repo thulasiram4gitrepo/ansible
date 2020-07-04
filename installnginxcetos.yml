@@ -1,0 +1,17 @@
+--- ### Install nginx on centos7
+
+- hosts: masterhost
+  become: true
+  tasks:
+  
+    - name: install nginx
+      yum:
+       name: nginx
+       state: latest
+       update_cache: yes # Ansible's apt module to refresh the caches before applying whatever change is necessary
+       
+    - name: start service
+      service:
+       name: nginx
+       state: started
+     

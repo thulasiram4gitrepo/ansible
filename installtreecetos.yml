@@ -1,0 +1,9 @@
+---
+- hosts: masterhost
+  become: true
+  tasks:
+    - name: install tree on centos
+      yum:
+       name: tree
+       state: present
+       
