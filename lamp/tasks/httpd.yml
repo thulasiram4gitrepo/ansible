@@ -1,0 +1,14 @@
+---
+- name: install httpd on host machine
+  yum:
+    name: httpd
+    state: latest
+- name: start apache
+  service:
+    name: httpd
+    state: start
+- name: copy index.html file from host to node
+  copy:
+    src: index.html
+    dest: /var/www/html/
+

@@ -1,0 +1,13 @@
+---
+- hosts: masterhost
+  become: true
+  tasks:
+   - name: install wget,tree,unzip and VIM
+     yum: name={{item}} state=latest
+     with_items:
+      - wget
+      - tree
+      - unzip
+      - vim
+           
+

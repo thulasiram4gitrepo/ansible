@@ -1,0 +1,50 @@
+---
+# remove apache2 and install nginx on ubuntu machine
+
+- hosts: myhosts
+  become: true
+  gather_facts: true
+  tasks:
+  
+    - name: stop the apache2 service
+      service:
+       name: apache2
+       state: stopped
+    
+    - name: remove the apache2 web server
+      apt:
+       name: apache2
+       state: absent
+    
+    - name: delete the directory 
+      file:
+       path: /var/www
+       state: absent
+    
+    - name: install nginx on ubuntu machine
+      apt:
+       name: nginx
+       state: latest
+    
+    - name: start the nginx service
+      service:
+       name: nginx
+       state: started
+       
+    - name: copy the webpage
+      copy:
+       src: /home/rakesh/ansible/index.html
+       dest: /var/www/html/
+     
+    - name: restart the nginx service
+      service:
+       name: nginx
+       state: restarted
+    
+    
+     
+    
+      
+    
+    
+
